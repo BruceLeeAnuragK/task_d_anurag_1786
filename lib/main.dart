@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:task_d_anurag_1786/view/screen/home/cart_page.dart';
 import 'package:task_d_anurag_1786/view/screen/home/detail_page.dart';
+import 'package:task_d_anurag_1786/view/screen/home/favourite_page.dart';
 import 'package:task_d_anurag_1786/view/screen/home/home_page.dart';
 import 'package:task_d_anurag_1786/view/screen/home/provider/cart_add_provider.dart';
 import 'package:task_d_anurag_1786/view/screen/home/provider/favourite_page.dart';
@@ -54,6 +55,7 @@ class MyApp extends StatelessWidget {
         "splash_screen": (context) => SplashScreen(),
         "detail_page": (context) => ProductDetailPage(),
         "cart_page": (context) => CartPage(),
+        "fav_page": (context) => FavouritePage(),
       },
     );
   }

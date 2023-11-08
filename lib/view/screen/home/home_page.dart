@@ -40,6 +40,26 @@ class _HomePageState extends State<HomePage> {
             fontWeight: FontWeight.bold,
           ),
         ),
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.of(context).pushNamed("fav_page");
+            },
+            icon: Icon(
+              Icons.favorite,
+              color: Colors.blue.shade500,
+            ),
+          ),
+          IconButton(
+            onPressed: () {
+              Navigator.of(context).pushNamed("cart_page");
+            },
+            icon: Icon(
+              Icons.shopping_cart,
+              color: Colors.blue.shade500,
+            ),
+          ),
+        ],
         leading: IconButton(
           icon: Icon(
             Icons.arrow_back_ios_new,
@@ -125,15 +145,9 @@ class _HomePageState extends State<HomePage> {
                           children: [
                             IconButton(
                               onPressed: () {
-                                (Provider.of<FaouriteProvider>(context).added ==
-                                        false)
-                                    ? Provider.of<FaouriteProvider>(context)
-                                        .addToFavourite(
-                                            product: snapshot.data![index])
-                                    : Provider.of<FaouriteProvider>(context)
-                                        .removeFromFavourite(
-                                        product: snapshot.data![index],
-                                      );
+                                Provider.of<FaouriteProvider>(context)
+                                    .addToFavourite(
+                                        product: snapshot.data![index]);
                               },
                               icon: (Provider.of<FaouriteProvider>(context)
                                           .added ==
@@ -149,15 +163,8 @@ class _HomePageState extends State<HomePage> {
                             ),
                             IconButton(
                               onPressed: () {
-                                (Provider.of<CartProvider>(context).added ==
-                                        false)
-                                    ? Provider.of<CartProvider>(context)
-                                        .addToCart(
-                                            product: snapshot.data![index])
-                                    : Provider.of<CartProvider>(context)
-                                        .removeFromCart(
-                                        product: snapshot.data![index],
-                                      );
+                                Provider.of<CartProvider>(context)
+                                    .addToCart(product: snapshot.data![index]);
                               },
                               icon: (Provider.of<CartProvider>(context).added ==
                                       false)
@@ -167,7 +174,7 @@ class _HomePageState extends State<HomePage> {
                                     )
                                   : Icon(
                                       Icons.shopping_cart,
-                                      color: Colors.blue.shade500,
+                                      color: Colors.amber,
                                     ),
                             ),
                           ],
