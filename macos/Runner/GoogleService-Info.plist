@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyCwd_eqwDTkRby1Py3KLiOxDo0Gtgm98WY</string>
+	<key>GCM_SENDER_ID</key>
+	<string>365156928489</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.taskDAnurag1786.RunnerTests</string>
+	<key>PROJECT_ID</key>
+	<string>type-d-anurag-1786</string>
+	<key>STORAGE_BUCKET</key>
+	<string>type-d-anurag-1786.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:365156928489:ios:33cd63c4445cedcff71978</string>
+</dict>
+</plist>
