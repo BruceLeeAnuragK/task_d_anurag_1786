@@ -1,13 +1,9 @@
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:task_d_anurag_1786/helper/api_helper.dart';
-import 'package:task_d_anurag_1786/helper/firstore_helper.dart';
-import 'package:task_d_anurag_1786/view/screen/home/model/product_model.dart';
 import 'package:task_d_anurag_1786/view/screen/home/provider/cart_add_provider.dart';
 import 'package:task_d_anurag_1786/view/screen/home/provider/favourite_page.dart';
-import 'package:task_d_anurag_1786/view/screen/login/model/login_model.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -91,6 +87,18 @@ class _HomePageState extends State<HomePage> {
                   child: Container(
                     height: 300,
                     width: double.infinity,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(20),
+                      boxShadow: const [
+                        BoxShadow(
+                          color: Colors.grey,
+                          blurRadius: 5,
+                          spreadRadius: 5,
+                          offset: Offset(5, 5),
+                        )
+                      ],
+                    ),
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -146,11 +154,14 @@ class _HomePageState extends State<HomePage> {
                           children: [
                             IconButton(
                               onPressed: () {
-                                setState(() {
-                                  Provider.of<FaouriteProvider>(context)
-                                      .addToFavourite(
-                                          product: snapshot.data![index]);
-                                });
+                                setState(
+                                  () {
+                                    Provider.of<FaouriteProvider>(context)
+                                        .addToFavourite(
+                                      product: snapshot.data![index],
+                                    );
+                                  },
+                                );
                               },
                               icon: (Provider.of<FaouriteProvider>(context)
                                           .added ==
@@ -159,17 +170,21 @@ class _HomePageState extends State<HomePage> {
                                       Icons.favorite_outline,
                                       color: Colors.blue.shade500,
                                     )
-                                  : Icon(
+                                  : const Icon(
                                       Icons.favorite,
                                       color: Colors.amber,
                                     ),
                             ),
                             IconButton(
                               onPressed: () {
-                                setState(() {
-                                  Provider.of<CartProvider>(context).addToCart(
-                                      product: snapshot.data![index]);
-                                });
+                                setState(
+                                  () {
+                                    Provider.of<CartProvider>(context)
+                                        .addToCart(
+                                      product: snapshot.data![index],
+                                    );
+                                  },
+                                );
                               },
                               icon: (Provider.of<CartProvider>(context).added ==
                                       false)
@@ -177,7 +192,7 @@ class _HomePageState extends State<HomePage> {
                                       Icons.shopping_cart_outlined,
                                       color: Colors.blue.shade500,
                                     )
-                                  : Icon(
+                                  : const Icon(
                                       Icons.shopping_cart,
                                       color: Colors.amber,
                                     ),
@@ -186,26 +201,14 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ],
                     ),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(20),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey,
-                          blurRadius: 5,
-                          spreadRadius: 5,
-                          offset: Offset(5, 5),
-                        )
-                      ],
-                    ),
                   ),
                 );
               },
             );
           } else if (snapshot.hasError) {
-            return Text("There is no Data Found");
+            return const Text("There is no Data Found");
           } else {
-            return Center(
+            return const Center(
               child: CircularProgressIndicator(
                 color: Colors.amber,
               ),

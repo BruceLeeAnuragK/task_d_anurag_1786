@@ -7,6 +7,7 @@ import 'package:task_d_anurag_1786/view/screen/home/favourite_page.dart';
 import 'package:task_d_anurag_1786/view/screen/home/home_page.dart';
 import 'package:task_d_anurag_1786/view/screen/home/provider/cart_add_provider.dart';
 import 'package:task_d_anurag_1786/view/screen/home/provider/favourite_page.dart';
+import 'package:task_d_anurag_1786/view/screen/home/provider/product_provider.dart';
 import 'package:task_d_anurag_1786/view/screen/login/login_screen.dart';
 import 'package:task_d_anurag_1786/view/screen/login/provider/login_provider.dart';
 import 'package:task_d_anurag_1786/view/screen/splash/splash_screen.dart';
@@ -29,6 +30,9 @@ Future<void> main() async {
       ),
       ChangeNotifierProvider(
         create: (context) => FaouriteProvider(),
+      ),
+      ChangeNotifierProvider(
+        create: (context) => ProductProvider(),
       ),
     ],
     child: const MyApp(),

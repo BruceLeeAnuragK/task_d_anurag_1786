@@ -7,15 +7,12 @@ class CartProvider extends ChangeNotifier {
   addToCart({required Product product}) {
     added = true;
     cartProduct.add(product);
-
     notifyListeners();
   }
 
   removeFromCart({required Product product}) {
     added = true;
-
     cartProduct.remove(product);
-
     notifyListeners();
   }
 }
