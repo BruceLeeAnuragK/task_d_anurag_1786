@@ -95,13 +95,14 @@ class _HomePageState extends State<HomePage> {
                       mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Hero(
-                          tag: "image",
-                          child: GestureDetector(
-                            onTap: () {
-                              Navigator.of(context)
-                                  .pushNamed("detail_page", arguments: index);
-                            },
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.of(context)
+                                .pushNamed("detail_page", arguments: index);
+                            setState(() {});
+                          },
+                          child: Hero(
+                            tag: "image",
                             child: Container(
                               height: 70,
                               width: double.infinity,
@@ -145,9 +146,11 @@ class _HomePageState extends State<HomePage> {
                           children: [
                             IconButton(
                               onPressed: () {
-                                Provider.of<FaouriteProvider>(context)
-                                    .addToFavourite(
-                                        product: snapshot.data![index]);
+                                setState(() {
+                                  Provider.of<FaouriteProvider>(context)
+                                      .addToFavourite(
+                                          product: snapshot.data![index]);
+                                });
                               },
                               icon: (Provider.of<FaouriteProvider>(context)
                                           .added ==
@@ -163,8 +166,10 @@ class _HomePageState extends State<HomePage> {
                             ),
                             IconButton(
                               onPressed: () {
-                                Provider.of<CartProvider>(context)
-                                    .addToCart(product: snapshot.data![index]);
+                                setState(() {
+                                  Provider.of<CartProvider>(context).addToCart(
+                                      product: snapshot.data![index]);
+                                });
                               },
                               icon: (Provider.of<CartProvider>(context).added ==
                                       false)
