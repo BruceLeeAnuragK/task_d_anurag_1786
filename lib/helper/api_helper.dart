@@ -9,7 +9,7 @@ class APIHelper {
   String api = "https://dummyjson.com/products?limit=100";
 
   Dio dio = Dio();
-
+  List<Product> Products =[];
   Future<List<Product>?> getData() async {
     Response response = await dio.get(api);
 
@@ -17,7 +17,8 @@ class APIHelper {
       List allData = response.data['products'];
       List<Product> allProducts =
           allData.map((e) => Product.fromMap(data: e)).toList();
-      return allProducts;
+      Products = allProducts;
+      return Products;
     }
   }
 }

@@ -43,6 +43,7 @@ dependencies:
   dio:
   response:
   cloud_firestore:
+  hero_animation:
 
 
 dev_dependencies:

@@ -1,34 +1,21 @@
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:task_d_anurag_1786/helper/api_helper.dart';
-import 'package:task_d_anurag_1786/helper/firstore_helper.dart';
-import 'package:task_d_anurag_1786/view/screen/home/model/product_model.dart';
 import 'package:task_d_anurag_1786/view/screen/home/provider/cart_add_provider.dart';
 import 'package:task_d_anurag_1786/view/screen/home/provider/favourite_page.dart';
-import 'package:task_d_anurag_1786/view/screen/login/model/login_model.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+import '../../../helper/api_helper.dart';
+
+class CartPage extends StatefulWidget {
+  const CartPage({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<CartPage> createState() => _CartPageState();
 }
 
-class _HomePageState extends State<HomePage> {
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-  }
-
+class _CartPageState extends State<CartPage> {
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
-    final double itemHeight = (size.height - kToolbarHeight - 210) / 2;
-    final double itemWidth = size.width / 2;
-
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.amber,
@@ -46,9 +33,11 @@ class _HomePageState extends State<HomePage> {
             color: Colors.blue.shade500,
           ),
           onPressed: () {
-            setState(() {
-              Navigator.of(context).pop();
-            });
+            setState(
+              () {
+                Navigator.of(context).pop();
+              },
+            );
           },
         ),
         centerTitle: true,
@@ -57,13 +46,7 @@ class _HomePageState extends State<HomePage> {
         future: APIHelper.apiHelper.getData(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            return GridView.builder(
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                crossAxisSpacing: 5,
-                mainAxisSpacing: 5,
-                childAspectRatio: (itemWidth / itemHeight),
-              ),
+            return ListView.builder(
               itemCount: snapshot.data!.length,
               itemBuilder: (context, index) {
                 return Padding(
@@ -75,25 +58,16 @@ class _HomePageState extends State<HomePage> {
                       mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Hero(
-                          tag: "image",
-                          child: GestureDetector(
-                            onTap: () {
-                              Navigator.of(context)
-                                  .pushNamed("detail_page", arguments: index);
-                            },
-                            child: Container(
-                              height: 70,
-                              width: double.infinity,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                image: DecorationImage(
-                                  image: NetworkImage(
-                                    snapshot.data![index].thumbnail,
-                                  ),
-                                  fit: BoxFit.cover,
-                                ),
+                        Container(
+                          height: 70,
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            image: DecorationImage(
+                              image: NetworkImage(
+                                snapshot.data![index].thumbnail,
                               ),
+                              fit: BoxFit.cover,
                             ),
                           ),
                         ),
