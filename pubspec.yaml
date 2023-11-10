@@ -44,6 +44,10 @@ dependencies:
   response:
   cloud_firestore:
   hero_animation:
+  shared_preferences:
+  get:
+  get_storage:
+  auth0_flutter:
 
 
 dev_dependencies:
